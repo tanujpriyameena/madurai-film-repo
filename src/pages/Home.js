@@ -6,7 +6,7 @@ function Home() {
       <section className="hero">
         <div className="hero-content">
           <h1>Madurai Film Library</h1>
-          <p className="hero-tagline">Discover, track, and celebrate the art of Tamil cinema.</p>
+          <p className="hero-tagline">Welcome to the Madurai Film Library, my midterm project!</p>
           <Link to="/collections" className="hero-btn">Browse the Collection</Link>
         </div>
       </section>
@@ -14,16 +14,14 @@ function Home() {
       <section className="about">
         <h2>About This Library</h2>
         <p>
-          The Madurai Film Library is a personal archive dedicated to the rich tradition of Tamil
-          film — from the classic dramas of the mid-twentieth century to the bold independent voices
-          of today. Named after one of Tamil Nadu's oldest and most storied cities, this library
-          exists as a space to explore, remember, and honor the films that have shaped a culture.
+          The Madurai Film Library, centered in Tamil Nadu, India, is dedicated to the cinema of the world. It is dedicated to help users track popular movies, classics, and keep track of the films they like, and plan to see. Adding on, with each iteration, we are constantly expanding our collections, and making it an enjoyable experience for all.
         </p>
         <p>
           Whether you are a longtime fan or a curious newcomer, you will find a curated selection
-          of films spanning decades, genres, and directors. Every film in this collection has been
+          of films spanning different eras, genres, and directors. Every film in this collection has been
           chosen for its artistic merit, cultural significance, or enduring popularity.
         </p>
+        <p><strong>Please note that this is still a work in progress!</strong></p>
       </section>
 
       <section className="features">
