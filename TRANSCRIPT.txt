@@ -1,0 +1,623 @@
+
+╭─── Claude Code v2.1.58 ──────────────────────────────────────────────────────╮
+│                                                    │ Tips for getting        │
+│                Welcome back Vishwa!                │ started                 │
+│                                                    │ Run /init to create a … │
+│                       ▐▛███▜▌                      │ ─────────────────────── │
+│                      ▝▜█████▛▘                     │ Recent activity         │
+│                        ▘▘ ▝▝                       │ No recent activity      │
+│                                                    │                         │
+│              Sonnet 4.6 · Claude Pro               │                         │
+│ ~\Documents\DIG4503\Midterm project\midterm_movie… │                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+❯ I have an idea for a react project, called "Madurai Film Library." It     
+  serves almost like a movie tracker app, with the following features:      
+  - Browse a collection of movies (maybe in gallery view),                  
+  - Save favorites to localStorage,                                         
+  - Mark as watched or unmark it                                            
+  - Rate and review                                                         
+  - Filter by genre, keywords, release dates, etc.                          
+                                                                            
+  So, my idea entails adding these pages to account for these features:     
+  - home.html (landing page)                                                
+  - collections.html (a gallery/thumbnail view of various movies)           
+  - profile.html (with the ability to see favorite films there, and maybe a 
+   short bio)                                                               
+  - movie.html with an id, a page for each movie (with a box dedicated to   
+  see reviews, and a star rating)                                           
+                                                                            
+  Do not code yet. I just want to know, how functional is this plan? Could  
+  you perhaps break this down into possible steps?                          
+
+● Recalled 1 memory (ctrl+o to expand)
+
+● The plan is solid and well-scoped for a React project. The four pages map
+  cleanly to the four core features, and localStorage is a smart choice — it
+  avoids needing a backend entirely. Here are a few observations before a step
+  breakdown:
+
+  What works well:
+  - The pages are logically separated by concern
+  - localStorage for favorites/watched/ratings is completely self-contained
+  - A dynamic movie detail page (/movie/:id) is a natural fit for React Router
+  - Filtering on the collection page is a standard, achievable pattern
+
+  One note on structure: Since this is a React app (not a multi-page HTML site),
+   you won't actually have home.html, collections.html, etc. as separate files.
+  React handles routing client-side — each "page" is a component, and React
+  Router maps URLs to them. This is a common point of confusion early on.
+
+  ---
+  Suggested Steps
+
+  Phase 1 — Foundation
+  1. Set up React Router and define your four routes (/, /collections, /profile,
+   /movie/:id)
+  2. Create a static movie data file (JSON) — title, genre, year, poster image,
+  description, cast, etc.
+  3. Build a shared layout with a navbar that links between pages
+
+  Phase 2 — Collection & Browse
+  4. Build the Collections page with a grid/gallery of movie cards
+  5. Add filter controls — by genre, keyword search, and release year range
+  6. Wire filters to state so the gallery updates reactively
+
+  Phase 3 — Movie Detail Page
+  7. Build the individual movie page, pulling data by ID from your JSON
+  8. Add a star rating component (1–5 stars, stored in localStorage)
+  9. Add a text review form, stored and displayed per movie
+
+  Phase 4 — Favorites & Watched
+  10. Add "Add to Favorites" and "Mark as Watched" toggle buttons (on movie
+  cards and the detail page)
+  11. Persist both states to localStorage, keyed by movie ID
+  12. Display favorites and watched films on the Profile page
+
+  Phase 5 — Profile Page
+  13. Build the Profile page with a bio section (editable or static)
+  14. Pull and display the user's favorites and watched list from localStorage
+
+  Phase 6 — Polish
+  15. Add responsive styling
+  16. Handle edge cases (no results, empty favorites, etc.)
+  17. Optional: sort options (by rating, year, title)
+
+  ---
+  The scope is realistic for a midterm project. Phases 1–4 are the core, and
+  Phases 5–6 are enhancement. Want to start with any particular phase, or should
+   I look at what's already in the project?
+
+❯ Before I start on phase 1, can you shortly verify if this plan will work  
+  on Netlify?                                                               
+
+● Read 1 file (ctrl+o to expand)
+
+● Yes, this will work on Netlify with one important caveat.
+
+  The good: Create React App with react-scripts build is exactly what Netlify
+  expects. Your build command is npm run build, output directory is build/ —
+  Netlify auto-detects both. localStorage is purely client-side, so no server is
+   needed at all.
+
+  The one catch — React Router: When you add React Router, direct URL access to
+  routes like /collections or /movie/5 will return a 404 on Netlify, because
+  Netlify looks for actual files at those paths and finds none. The fix is
+  simple: add a _redirects file to your public/ folder with this single line:
+
+  /*    /index.html   200
+
+  That tells Netlify to serve index.html for all routes and let React Router
+  take over. Without it, only / will work reliably.
+
+  Everything else in your plan — static JSON data, localStorage, client-side
+  filtering — is fully Netlify-compatible with no changes needed.
+
+❯ Let's start with phase 1. I'd also like to put some emphasis on the       
+  landing page. For my assignment, I require at least basic styling there,  
+  and some simple paragraphs of text. No need to do anything fancy yet.     
+
+● Let me first look at what's already in the project.
+
+● Searched for 2 patterns, read 4 files (ctrl+o to expand)
+
+● Good — the _redirects file already has the correct rule. Now let me set up
+  Phase 1. I'll install React Router, create the page structure, a navbar, and a
+   styled landing page.
+
+● Bash(cd "/c/Users/tanuj/Documents/DIG4503/Midterm
+      project/midterm_movies/madurai-film-library" && npm install
+      react-router-dom)
+  ⎿  added 4 packages, and audited 1326 packages in 6s
+
+     269 packages are looking for funding
+     … +11 lines (ctrl+o to expand)
+  ⎿  (timeout 1m)
+
+● Now let me create the folder structure and all the components.
+
+● Bash(mkdir -p "/c/Users/tanuj/Documents/DIG4503/Midterm
+      project/midterm_movies/madurai-film-library/src/pages"
+      "/c/Users/tanuj/Documents/DIG4503/Midterm project/midt…)
+  ⎿  Done
+
+● Write(src\components\Navbar.js)
+  ⎿  Wrote 16 lines to src\components\Navbar.js
+       1 import { Link, NavLink } from 'react-router-dom';
+       2 
+       3 function Navbar() {
+       4   return (
+       5     <nav className="navbar">
+       6       <Link to="/" className="navbar-brand">Madurai Film Library
+         </Link>
+       7       <ul className="navbar-links">
+       8         <li><NavLink to="/" end className={({ isActive }) => isA
+         ctive ? 'active' : ''}>Home</NavLink></li>
+       9         <li><NavLink to="/collections" className={({ isActive })
+          => isActive ? 'active' : ''}>Collections</NavLink></li>
+      10         <li><NavLink to="/profile" className={({ isActive }) => 
+         isActive ? 'active' : ''}>Profile</NavLink></li>
+     … +6 lines (ctrl+o to expand)
+
+● Write(src\pages\Home.js)
+  ⎿  Wrote 54 lines to src\pages\Home.js
+       1 import { Link } from 'react-router-dom';
+       2 
+       3 function Home() {
+       4   return (
+       5     <main>
+       6       <section className="hero">
+       7         <div className="hero-content">
+       8           <h1>Madurai Film Library</h1>
+       9           <p className="hero-tagline">Discover, track, and celeb
+         rate the art of Tamil cinema.</p>
+      10           <Link to="/collections" className="hero-btn">Browse th
+         e Collection</Link>
+     … +44 lines (ctrl+o to expand)
+
+● Write(src\pages\Collections.js)
+  ⎿  Wrote 10 lines to src\pages\Collections.js
+       1 function Collections() {
+       2   return (
+       3     <main className="page-placeholder">
+       4       <h1>Collections</h1>
+       5       <p>The film gallery will be built here in Phase 2.</p>
+       6     </main>
+       7   );
+       8 }
+       9 
+      10 export default Collections;
+
+● Write(src\pages\Profile.js)
+  ⎿  Wrote 10 lines to src\pages\Profile.js
+       1 function Profile() {
+       2   return (
+       3     <main className="page-placeholder">
+       4       <h1>Profile</h1>
+       5       <p>Favorites and watched films will appear here in Phase 4
+         .</p>
+       6     </main>
+       7   );
+       8 }
+       9 
+      10 export default Profile;
+
+● Write(src\pages\Movie.js)
+  ⎿  Wrote 14 lines to src\pages\Movie.js
+       1 import { useParams } from 'react-router-dom';
+       2 
+       3 function Movie() {
+       4   const { id } = useParams();
+       5 
+       6   return (
+       7     <main className="page-placeholder">
+       8       <h1>Movie #{id}</h1>
+       9       <p>Individual movie details, ratings, and reviews will be 
+         built here in Phase 3.</p>
+      10     </main>
+     … +4 lines (ctrl+o to expand)
+
+● Now rewrite App.js and App.css:
+
+● Write(src\App.js)
+  ⎿  Added 15 lines, removed 17 lines
+       1 -import logo from './logo.svg';                                 
+       1 +import { BrowserRouter, Routes, Route } from 'react-router-dom'
+         +;                                                              
+       2 +import Navbar from './components/Navbar';                      
+       3 +import Home from './pages/Home';                               
+       4 +import Collections from './pages/Collections';                 
+       5 +import Profile from './pages/Profile';                         
+       6 +import Movie from './pages/Movie';                             
+       7  import './App.css';
+       8  
+       9  function App() {
+      10    return (
+       6 -    <div className="App">                                      
+       7 -      <header className="App-header">                          
+       8 -        <img src={logo} className="App-logo" alt="logo" />     
+       9 -        <p>                                                    
+      10 -          Edit <code>src/App.js</code> and save to reload.     
+      11 -        </p>                                                   
+      12 -        <a                                                     
+      13 -          className="App-link"                                 
+      14 -          href="https://reactjs.org"                           
+      15 -          target="_blank"                                      
+      16 -          rel="noopener noreferrer"                            
+      17 -        >                                                      
+      18 -          Learn React                                          
+      19 -        </a>                                                   
+      20 -      </header>                                                
+      21 -    </div>                                                     
+      11 +    <BrowserRouter>                                            
+      12 +      <Navbar />                                               
+      13 +      <Routes>                                                 
+      14 +        <Route path="/" element={<Home />} />                  
+      15 +        <Route path="/collections" element={<Collections />} />
+      16 +        <Route path="/profile" element={<Profile />} />        
+      17 +        <Route path="/movie/:id" element={<Movie />} />        
+      18 +      </Routes>                                                
+      19 +    </BrowserRouter>                                           
+      20    );
+      21  }
+      22  
+
+● Write(src\App.css)
+  ⎿  Added 161 lines, removed 25 lines
+        1 -.App {                                                        
+        2 -  text-align: center;                                         
+        1 +/* ── Global ── */                                            
+        2 +*, *::before, *::after {                                      
+        3 +  box-sizing: border-box;                                     
+        4  }
+        5  
+        5 -.App-logo {                                                   
+        6 -  height: 40vmin;                                             
+        7 -  pointer-events: none;                                       
+        6 +body {                                                        
+        7 +  margin: 0;                                                  
+        8 +  background-color: #0f0f0f;                                  
+        9 +  color: #e8e0d0;                                             
+       10 +  font-family: 'Georgia', 'Times New Roman', serif;           
+       11  }
+       12  
+       10 -@media (prefers-reduced-motion: no-preference) {              
+       11 -  .App-logo {                                                 
+       12 -    animation: App-logo-spin infinite 20s linear;             
+       13 -  }                                                           
+       13 +a {                                                           
+       14 +  color: inherit;                                             
+       15 +  text-decoration: none;                                      
+       16  }
+       17  
+       16 -.App-header {                                                 
+       17 -  background-color: #282c34;                                  
+       18 -  min-height: 100vh;                                          
+       18 +/* ── Navbar ── */                                            
+       19 +.navbar {                                                     
+       20    display: flex;
+       20 -  flex-direction: column;                                     
+       21    align-items: center;
+       22 -  justify-content: center;                                    
+       23 -  font-size: calc(10px + 2vmin);                              
+       24 -  color: white;                                               
+       22 +  justify-content: space-between;                             
+       23 +  padding: 1rem 2.5rem;                                       
+       24 +  background-color: #1a1a1a;                                  
+       25 +  border-bottom: 1px solid #333;                              
+       26 +  position: sticky;                                           
+       27 +  top: 0;                                                     
+       28 +  z-index: 100;                                               
+       29  }
+       30  
+       27 -.App-link {                                                   
+       28 -  color: #61dafb;                                             
+       31 +.navbar-brand {                                               
+       32 +  font-size: 1.25rem;                                         
+       33 +  font-weight: bold;                                          
+       34 +  color: #c8a96e;                                             
+       35 +  letter-spacing: 0.05em;                                     
+       36  }
+       37  
+       31 -@keyframes App-logo-spin {                                    
+       32 -  from {                                                      
+       33 -    transform: rotate(0deg);                                  
+       34 -  }                                                           
+       35 -  to {                                                        
+       36 -    transform: rotate(360deg);                                
+       37 -  }                                                           
+       38 +.navbar-links {                                               
+       39 +  list-style: none;                                           
+       40 +  display: flex;                                              
+       41 +  gap: 2rem;                                                  
+       42 +  margin: 0;                                                  
+       43 +  padding: 0;                                                 
+       44  }
+       45 +                                                              
+       46 +.navbar-links a {                                             
+       47 +  font-size: 0.95rem;                                         
+       48 +  color: #b0a090;                                             
+       49 +  letter-spacing: 0.03em;                                     
+       50 +  transition: color 0.2s;                                     
+       51 +}                                                             
+       52 +                                                              
+       53 +.navbar-links a:hover,                                        
+       54 +.navbar-links a.active {                                      
+       55 +  color: #c8a96e;                                             
+       56 +}                                                             
+       57 +                                                              
+       58 +/* ── Hero ── */                                              
+       59 +.hero {                                                       
+       60 +  background-color: #1a1a1a;                                  
+       61 +  border-bottom: 1px solid #2a2a2a;                           
+       62 +  padding: 5rem 2.5rem;                                       
+       63 +  text-align: center;                                         
+       64 +}                                                             
+       65 +                                                              
+       66 +.hero-content {                                               
+       67 +  max-width: 680px;                                           
+       68 +  margin: 0 auto;                                             
+       69 +}                                                             
+       70 +                                                              
+       71 +.hero h1 {                                                    
+       72 +  font-size: 3rem;                                            
+       73 +  color: #c8a96e;                                             
+       74 +  margin: 0 0 1rem;                                           
+       75 +  letter-spacing: 0.04em;                                     
+       76 +}                                                             
+       77 +                                                              
+       78 +.hero-tagline {                                               
+       79 +  font-size: 1.15rem;                                         
+       80 +  color: #a09080;                                             
+       81 +  margin: 0 0 2rem;                                           
+       82 +  line-height: 1.6;                                           
+       83 +}                                                             
+       84 +                                                              
+       85 +.hero-btn {                                                   
+       86 +  display: inline-block;                                      
+       87 +  padding: 0.75rem 2rem;                                      
+       88 +  background-color: #c8a96e;                                  
+       89 +  color: #0f0f0f;                                             
+       90 +  font-size: 0.95rem;                                         
+       91 +  font-weight: bold;                                          
+       92 +  letter-spacing: 0.05em;                                     
+       93 +  border-radius: 3px;                                         
+       94 +  transition: background-color 0.2s;                          
+       95 +}                                                             
+       96 +                                                              
+       97 +.hero-btn:hover {                                             
+       98 +  background-color: #dfc080;                                  
+       99 +}                                                             
+      100 +                                                              
+      101 +/* ── About ── */                                             
+      102 +.about {                                                      
+      103 +  max-width: 740px;                                           
+      104 +  margin: 0 auto;                                             
+      105 +  padding: 4rem 2.5rem;                                       
+      106 +}                                                             
+      107 +                                                              
+      108 +.about h2 {                                                   
+      109 +  font-size: 1.6rem;                                          
+      110 +  color: #c8a96e;                                             
+      111 +  margin-bottom: 1.25rem;                                     
+      112 +}                                                             
+      113 +                                                              
+      114 +.about p {                                                    
+      115 +  font-size: 1rem;                                            
+      116 +  line-height: 1.8;                                           
+      117 +  color: #c8bfb0;                                             
+      118 +  margin-bottom: 1rem;                                        
+      119 +}                                                             
+      120 +                                                              
+      121 +/* ── Features ── */                                          
+      122 +.features {                                                   
+      123 +  background-color: #141414;                                  
+      124 +  padding: 4rem 2.5rem;                                       
+      125 +  text-align: center;                                         
+      126 +}                                                             
+      127 +                                                              
+      128 +.features h2 {                                                
+      129 +  font-size: 1.6rem;                                          
+      130 +  color: #c8a96e;                                             
+      131 +  margin-bottom: 2.5rem;                                      
+      132 +}                                                             
+      133 +                                                              
+      134 +.feature-grid {                                               
+      135 +  display: grid;                                              
+      136 +  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      137 +  gap: 1.5rem;                                                
+      138 +  max-width: 900px;                                           
+      139 +  margin: 0 auto;                                             
+      140 +}                                                             
+      141 +                                                              
+      142 +.feature-card {                                               
+      143 +  background-color: #1e1e1e;                                  
+      144 +  border: 1px solid #2e2e2e;                                  
+      145 +  border-radius: 4px;                                         
+      146 +  padding: 1.75rem 1.5rem;                                    
+      147 +  text-align: left;                                           
+      148 +}                                                             
+      149 +                                                              
+      150 +.feature-card h3 {                                            
+      151 +  font-size: 1rem;                                            
+      152 +  color: #c8a96e;                                             
+      153 +  margin: 0 0 0.75rem;                                        
+      154 +  text-transform: uppercase;                                  
+      155 +  letter-spacing: 0.08em;                                     
+      156 +}                                                             
+      157 +                                                              
+      158 +.feature-card p {                                             
+      159 +  font-size: 0.9rem;                                          
+      160 +  line-height: 1.7;                                           
+      161 +  color: #a09080;                                             
+      162 +  margin: 0;                                                  
+      163 +}                                                             
+      164 +                                                              
+      165 +/* ── Placeholder pages ── */                                 
+      166 +.page-placeholder {                                           
+      167 +  padding: 4rem 2.5rem;                                       
+      168 +  max-width: 740px;                                           
+      169 +  margin: 0 auto;                                             
+      170 +}                                                             
+      171 +                                                              
+      172 +.page-placeholder h1 {                                        
+      173 +  color: #c8a96e;                                             
+      174 +}                                                             
+
+● Phase 1 is done. Here's a summary of what was built:
+
+  Files created/modified:
+  - src/components/Navbar.js — sticky navbar with active link highlighting
+  - src/pages/Home.js — landing page with hero, about, and features sections
+  - src/pages/Collections.js, Profile.js, Movie.js — stubs ready for later
+  phases
+  - src/App.js — rewritten with BrowserRouter and all four routes (/,
+  /collections, /profile, /movie/:id)
+  - src/App.css — replaced the CRA defaults with a dark cinematic theme (warm
+  gold accents on dark backgrounds)
+
+  Landing page sections:
+  1. Hero — library name, tagline, and a "Browse the Collection" button
+  2. About — two paragraphs describing the library's purpose and focus on Tamil
+  cinema
+  3. What You Can Do — four feature cards (Browse, Favorites, Watched, Rate &
+  Review)
+
+  Run npm start to preview it. When you're ready, we can move on to Phase 2 —
+  the Collections gallery and movie data.
+
+✻ Churned for 2m 35s
+
+❯ Do not start phase 2 yet. I would like to confirm. Can I push this        
+  initial site to my github repository, as this is all mainly just static,  
+  even now? Will this work on Netlify?                                      
+
+● Bash(cd "/c/Users/tanuj/Documents/DIG4503/Midterm
+      project/midterm_movies/madurai-film-library" && git status && git remote
+      -v)
+  ⎿  On branch master
+     Changes not staged for commit:
+       (use "git add <file>..." to update what will be committed)
+     … +14 lines (ctrl+o to expand)
+
+● Yes to both — and the project is in good shape to do it right now.
+
+  Will it work? Yes. Even though there's no real data yet, npm run build will
+  produce a valid static site. React Router + the _redirects file means all
+  routes will work on Netlify exactly as expected.
+
+  One thing to note: There's no GitHub remote configured yet in this repo.
+  You'll need to:
+  1. Create a new repository on GitHub
+  2. Run these two commands to connect and push:
+  git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+  git push -u origin master
+
+  On Netlify, once connected to the GitHub repo, use these settings:
+  - Build command: npm run build
+  - Publish directory: build
+
+  Netlify usually auto-detects both for Create React App projects, so you likely
+   won't need to set them manually.
+
+  Want me to stage and commit the current changes so it's ready to push?
+
+❯ I believe my branch is main, on the repo. Does that mean I have to be     
+  pushing to main?                                                          
+
+● Your local branch is master but your GitHub repo's default is main. You have
+  two options:
+
+  Option A — Rename your local branch to main (recommended)
+  git branch -m master main
+  git push -u origin main
+  Clean, keeps everything consistent.
+
+  Option B — Push master to main without renaming
+  git push -u origin master:main
+  This works but your local branch stays named master, which can get confusing
+  over time.
+
+  Option A is the cleaner choice. Want me to stage and commit the current
+  changes first, then you can run the rename and push yourself?
+
+❯ Before proceeding to phase 2, let us run a check. Are we meeting the      
+  requirements of phase 1? Are all tasks handled?                           
+
+● Let me check the current state of all Phase 1 files.
+
+● Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+● Phase 1 is mostly complete, but there's one item we missed from the original
+  plan:
+
+  ┌─────────────────────────────────────────────────────────────────┬────────┐
+  │                              Task                               │ Status │
+  ├─────────────────────────────────────────────────────────────────┼────────┤
+  │ React Router set up with all 4 routes (/, /collections,         │ ✅     │
+  │ /profile, /movie/:id)                                           │        │
+  ├─────────────────────────────────────────────────────────────────┼────────┤
+  │ Shared Navbar with active link highlighting                     │ ✅     │
+  ├─────────────────────────────────────────────────────────────────┼────────┤
+  │ Landing page with basic styling and text                        │ ✅     │
+  ├─────────────────────────────────────────────────────────────────┼────────┤
+  │ _redirects file for Netlify                                     │ ✅     │
+  ├─────────────────────────────────────────────────────────────────┼────────┤
+  │ Static movie data file (JSON)                                   │ ❌     │
+  └─────────────────────────────────────────────────────────────────┴────────┘
+
+  The JSON data file was listed as Step 2 of Phase 1 — it's the foundation that
+  Phase 2 (and everything after it) builds on. Without it, the Collections page
+  and Movie detail page have nothing to read from.
+
+  Before moving to Phase 2, we should create that file. It would define each
+  movie with fields like:
+  - id, title, year, genre, description, posterUrl, director, cast
+
+  Do you want to handle that now, or do you have a specific list of movies in
+  mind you'd like to add?
+
+❯ Yes, do it now. For a list, let's start with three films: Avatar: Fire    
+  and Ash, Casablanca, and Pixar Cars.                                      
+
+● I'll create a src/data/movies.js file — a JS module is easier to import in
+  React than a raw JSON file.
+
+● Bash(mkdir -p "/c/Users/tanuj/Documents/DIG4503/Midterm
+      project/midterm_movies/madurai-film-library/src/data")
+  ⎿  Done
+
+● Write(src\data\movies.js)
+  ⎿  Wrote 37 lines to src\data\movies.js
+       1 const movies = [
+       2   {
+       3     id: 1,
+       4     title: "Avatar: Fire and Ash",
+       5     year: 2025,
+       6     genres: ["Sci-Fi", "Action", "Adventure"],
+       7     director: "James Cameron",
+       8     cast: ["Sam Worthington", "Zoe Saldaña", "Sigourney Weaver",
+          "Stephen Lang"],
+       9     description:
+      10       "The third chapter in James Cameron's Avatar saga returns 
+         to Pandora, where Jake Sully and Neytiri face a new and devastat
+         ing threat from a clan of Na'vi who harness the power of fire an
+         d volcanic ash. As old alliances fracture and the world of Pando
+         ra is pushed to its limits, the Sully family must once again fig
+         ht for their home and their people.",
+     … +27 lines (ctrl+o to expand)
+
+● Done. A few notes:
+
+  - posterUrl is left empty on all three — you'll fill those in when you have
+  image assets or URLs ready. Phase 2 will handle displaying them.
+  - Each movie has an id that matches the /movie/:id route we set up — so
+  /movie/2 will eventually load Casablanca, etc.
+  - genres is an array, which makes filtering in Phase 2 straightforward.
+
+  Phase 1 is now fully complete. Ready to push to GitHub whenever you are.
+
+✻ Brewed for 1m 5s
+
+❯ /export 
+  ⎿  Export cancelled
