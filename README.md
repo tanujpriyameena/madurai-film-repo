@@ -6,7 +6,7 @@ This is my README file, detailing the project, my plan, and any associated techn
 
 ## Planned Features (in associated pages)
 - Home.js: this will be my landing page, displaying text for now.
-- Collections.js: this will contain a gallery/thumbnail view of various movies, and allow users to search or filter movies there.
+- Collections.js: this will contain a gallery/thumbnail view of various movies, and allow users to search or filter movies there. Also, this page will allow them to like films and add it to their profile!
 - Profile.html: this page will provide the ability to see favorite films there, and user details.
 - Movie.js: this will display a dedicated page for each movie (handled by id, to come in future iterations). It will also provide a box to see reviews and star ratings.
 Note that Movie.js is separate from movies.js (which is under the data folder). Movie.js displays individual films!
