@@ -12,7 +12,7 @@ This is my README file, detailing the project, my plan, and any associated techn
 Note that Movie.js is separate from movies.js (which is under the data folder). Movie.js displays individual films!
 
 ## Technology
-I am utilizing Claude Code on terminal to achieve these results. I am also using React Router, so as to account for the different routes centered under the /pages folder. These are also handled by a _redirects file, which helps to display content when deploying to Netlify.
+I am utilizing Claude Code on terminal to achieve these results. I am also using React Router, so as to account for the different routes centered under the /pages folder. These are also handled by a _redirects file, which helps to display content when deploying to Netlify. LocalStorage will be used eventually for user data.
 
 Note, I will be using a React app primarily, but deploying everything on Netlify, via GitHub!
 
