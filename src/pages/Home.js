@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import movies from '../data/movies';
 
 function Home() {
   return (
@@ -11,6 +12,19 @@ function Home() {
         </div>
       </section>
 
+      <div className="marquee-wrapper">
+        <div className="marquee-track">
+          {[...movies, ...movies].map((movie, i) => (
+            <div key={i} className="marquee-poster">
+              {movie.posterUrl
+                ? <img src={movie.posterUrl} alt={movie.title} />
+                : <div className="marquee-placeholder">{movie.title}</div>
+              }
+            </div>
+          ))}
+        </div>
+      </div>
+
       <section className="about">
         <h2>About This Library</h2>
         <p>
@@ -21,7 +35,7 @@ function Home() {
           of films spanning different eras, genres, and directors. Every film in this collection has been
           chosen for its artistic merit, cultural significance, or enduring popularity.
         </p>
-        <p><strong>Please note that this is still a work in progress!</strong></p>
+        <p><strong>Please ensure to log in, you can see some preference options there!</strong></p>
       </section>
 
       <section className="features">
@@ -29,7 +43,7 @@ function Home() {
         <div className="feature-grid">
           <div className="feature-card">
             <h3>Browse</h3>
-            <p>Explore the full collection by genre, year, or keyword. Find something new or revisit an old favorite.</p>
+            <p>Explore the full collection by genre, rating, year, or keyword. Find something new or revisit an old favorite.</p>
           </div>
           <div className="feature-card">
             <h3>Save Favorites</h3>
@@ -41,7 +55,7 @@ function Home() {
           </div>
           <div className="feature-card">
             <h3>Rate &amp; Review</h3>
-            <p>Leave a star rating and a written review on any film. Your notes are saved locally to your device.</p>
+            <p>Leave a star rating and a written review on any film. Others will be able to see your reviews!</p>
           </div>
         </div>
       </section>

@@ -55,6 +55,22 @@ a {
   color: #c8a96e;
 }
 
+.navbar-logout {
+  background: none;
+  border: 1px solid #444;
+  color: #b0a090;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+  border-radius: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.navbar-logout:hover {
+  color: #c8a96e;
+  border-color: #c8a96e;
+}
+
 /* ── Hero ── */
 .hero {
   background-color: #1a1a1a;
@@ -96,6 +112,55 @@ a {
 
 .hero-btn:hover {
   background-color: #dfc080;
+}
+
+/* ── Poster marquee ── */
+.marquee-wrapper {
+  overflow: hidden;
+  background-color: #111111;
+  border-top: 1px solid #1e1e1e;
+  border-bottom: 1px solid #1e1e1e;
+  padding: 1.5rem 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  animation: marquee-scroll 90s linear infinite;
+}
+
+.marquee-poster {
+  flex-shrink: 0;
+  width: 130px;
+  aspect-ratio: 2 / 3;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  border: 1px solid #2a2a2a;
+}
+
+.marquee-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.marquee-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* ── About ── */
@@ -249,6 +314,31 @@ a {
   gap: 1.5rem;
 }
 
+/* ── Watchlist star ── */
+.watchlist-star {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  background: rgba(0, 0, 0, 0.55);
+  border: none;
+  border-radius: 3px;
+  font-size: 1.1rem;
+  color: #c8a96e;
+  cursor: pointer;
+  padding: 0.15rem 0.3rem;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.movie-card:hover .watchlist-star {
+  opacity: 1;
+}
+
+.watchlist-star--active {
+  opacity: 1 !important;
+}
+
 /* ── Movie card ── */
 .movie-card {
   display: block;
@@ -271,6 +361,7 @@ a {
   aspect-ratio: 2 / 3;
   background-color: #111;
   overflow: hidden;
+  position: relative;
 }
 
 .movie-card-poster img {
@@ -666,6 +757,43 @@ a {
   max-width: 600px;
 }
 
+.profile-name-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 320px;
+}
+
+.profile-name-input {
+  font-size: 1.1rem;
+}
+
+.profile-edit-name-btn {
+  background: none;
+  border: none;
+  color: #6a6058;
+  font-size: 0.78rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  font-family: inherit;
+  margin-top: 0.25rem;
+}
+
+.profile-edit-name-btn:hover {
+  color: #c8a96e;
+}
+
+/* ── Profile search ── */
+.profile-search-bar {
+  margin-bottom: 2rem;
+}
+
+.profile-search-bar .filter-input {
+  width: 100%;
+  max-width: 400px;
+}
+
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .movie-detail {
@@ -724,4 +852,556 @@ a {
     font-size: 0.65rem;
     padding: 0.2rem 0.4rem;
   }
+}
+
+/* ── Auth pages (login / signup) ── */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4rem 1.5rem;
+}
+
+.auth-card {
+  background-color: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-heading {
+  font-size: 1.6rem;
+  color: #c8a96e;
+  margin: 0 0 1.5rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.auth-label {
+  font-size: 0.85rem;
+  color: #a09080;
+  margin-top: 0.5rem;
+}
+
+.auth-input {
+  background-color: #111;
+  border: 1px solid #333;
+  color: #e8e0d0;
+  padding: 0.6rem 0.75rem;
+  border-radius: 3px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: #c8a96e;
+}
+
+.auth-btn {
+  margin-top: 1.25rem;
+}
+
+.auth-error {
+  background-color: #2a1a1a;
+  border: 1px solid #7a3530;
+  color: #e07060;
+  padding: 0.6rem 0.75rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.auth-switch {
+  font-size: 0.85rem;
+  color: #6a6058;
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+.auth-switch a {
+  color: #c8a96e;
+}
+
+.auth-name-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.auth-name-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 0.25rem;
+}
+
+/* ── Auth gate message on Movie page ── */
+.auth-gate-msg {
+  font-size: 0.9rem;
+  color: #6a6058;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.auth-gate-msg a {
+  color: #c8a96e;
+}
+
+/* ── Average rating ── */
+.movie-avg-rating {
+  font-size: 1rem;
+  color: #c8a96e;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.avg-rating-label {
+  font-size: 0.8rem;
+  color: #a09080;
+  letter-spacing: 0;
+}
+
+.movie-card-avg-rating {
+  font-size: 0.8rem;
+  color: #c8a96e;
+  margin: 0.2rem 0 0;
+  letter-spacing: 0.03em;
+}
+
+/* ── Community reviews ── */
+.community-reviews {
+  border-top: 1px solid #2a2a2a;
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+
+.movie-user-block-heading {
+  font-size: 1.1rem;
+  color: #c8a96e;
+  margin: 0 0 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.review-item {
+  border-left: 2px solid #2a2a2a;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.review-author {
+  font-size: 0.85rem;
+  color: #c8a96e;
+  margin: 0 0 0.4rem;
+  font-weight: bold;
+}
+
+.review-item-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #c8bfb0;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.review-votes {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.vote-btn {
+  background: none;
+  border: 1px solid #2a2a2a;
+  border-radius: 3px;
+  color: #6a6058;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.vote-btn:hover:not(:disabled) {
+  border-color: #555;
+  color: #c8bfb0;
+}
+
+.vote-btn:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.vote-btn--up.vote-btn--active {
+  border-color: #5a8a5a;
+  color: #7ec87e;
+}
+
+.vote-btn--down.vote-btn--active {
+  border-color: #8a5a5a;
+  color: #c87e7e;
+}
+
+.vote-count {
+  font-size: 0.8rem;
+  font-family: 'Georgia', serif;
+}
+
+/* ── Display preferences (Profile) ── */
+.profile-preferences {
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 2rem;
+}
+
+.preference-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 480px;
+  gap: 1rem;
+}
+
+.preference-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.preference-label {
+  font-size: 0.95rem;
+  color: #e8e0d0;
+}
+
+.preference-desc {
+  font-size: 0.8rem;
+  color: #6a6058;
+  font-style: italic;
+}
+
+.preference-toggle {
+  background-color: #1e1e1e;
+  border: 1px solid #444;
+  color: #6a6058;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 0.35rem 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  min-width: 52px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.preference-toggle--on {
+  background-color: #c8a96e;
+  border-color: #c8a96e;
+  color: #0f0f0f;
+}
+
+/* ── Base mode theme overrides ── */
+body.theme-base {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+body.theme-base .navbar {
+  background-color: #f4f4f4;
+  border-bottom-color: #cccccc;
+}
+
+body.theme-base .navbar-brand {
+  color: #333333;
+}
+
+body.theme-base .navbar-links a {
+  color: #555555;
+}
+
+body.theme-base .navbar-links a:hover,
+body.theme-base .navbar-links a.active {
+  color: #111111;
+}
+
+body.theme-base .navbar-logout {
+  color: #555555;
+  border-color: #aaaaaa;
+}
+
+body.theme-base .hero {
+  background-color: #f0f0f0;
+  border-bottom-color: #dddddd;
+}
+
+body.theme-base .hero h1 {
+  color: #111111;
+}
+
+body.theme-base .hero-tagline {
+  color: #555555;
+}
+
+body.theme-base .hero-btn {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+body.theme-base .about h2,
+body.theme-base .features h2 {
+  color: #111111;
+}
+
+body.theme-base .about p {
+  color: #333333;
+}
+
+body.theme-base .features {
+  background-color: #f8f8f8;
+}
+
+body.theme-base .feature-card {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+
+body.theme-base .feature-card h3 {
+  color: #111111;
+}
+
+body.theme-base .feature-card p {
+  color: #555555;
+}
+
+body.theme-base .watchlist-star {
+  background: rgba(255, 255, 255, 0.75);
+  color: #111111;
+}
+
+body.theme-base .movie-card {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+
+body.theme-base .movie-card:hover {
+  border-color: #111111;
+}
+
+body.theme-base .movie-card-title {
+  color: #111111;
+}
+
+body.theme-base .movie-card-meta,
+body.theme-base .movie-card-director {
+  color: #666666;
+}
+
+body.theme-base .movie-card-avg-rating {
+  color: #444444;
+}
+
+body.theme-base .filter-input,
+body.theme-base .filter-select {
+  background-color: #ffffff;
+  border-color: #aaaaaa;
+  color: #111111;
+}
+
+body.theme-base .collections-heading,
+body.theme-base .movie-detail-title,
+body.theme-base .profile-heading {
+  color: #111111;
+}
+
+body.theme-base .movie-detail-director,
+body.theme-base .movie-detail-description,
+body.theme-base .movie-detail-cast {
+  color: #333333;
+}
+
+body.theme-base .detail-label {
+  color: #111111;
+}
+
+body.theme-base .movie-detail-meta {
+  color: #666666;
+}
+
+body.theme-base .movie-avg-rating {
+  color: #333333;
+}
+
+body.theme-base .auth-card {
+  background-color: #f8f8f8;
+  border-color: #cccccc;
+}
+
+body.theme-base .auth-heading {
+  color: #111111;
+}
+
+body.theme-base .auth-input {
+  background-color: #ffffff;
+  border-color: #aaaaaa;
+  color: #111111;
+}
+
+body.theme-base .auth-label {
+  color: #444444;
+}
+
+body.theme-base .review-textarea {
+  background-color: #ffffff;
+  border-color: #aaaaaa;
+  color: #111111;
+}
+
+body.theme-base .review-text,
+body.theme-base .review-item-text {
+  color: #333333;
+}
+
+body.theme-base .review-author,
+body.theme-base .movie-user-block h2,
+body.theme-base .movie-user-block-heading,
+body.theme-base .profile-section-heading,
+body.theme-base .community-reviews {
+  color: #111111;
+  border-color: #cccccc;
+}
+
+body.theme-base .movie-user-section,
+body.theme-base .community-reviews {
+  border-top-color: #cccccc;
+}
+
+body.theme-base .review-item {
+  border-left-color: #cccccc;
+}
+
+body.theme-base .profile-bio {
+  border-bottom-color: #cccccc;
+}
+
+body.theme-base .profile-avatar {
+  background-color: #e0e0e0;
+  border-color: #aaaaaa;
+  color: #333333;
+}
+
+body.theme-base .profile-subheading,
+body.theme-base .profile-empty {
+  color: #888888;
+}
+
+body.theme-base .toggle-btn {
+  border-color: #aaaaaa;
+  color: #555555;
+}
+
+body.theme-base .toggle-btn--active {
+  color: #111111;
+  border-color: #111111;
+}
+
+body.theme-base .preference-toggle {
+  background-color: #f0f0f0;
+  border-color: #aaaaaa;
+  color: #555555;
+}
+
+body.theme-base .preference-toggle--on {
+  background-color: #111111;
+  border-color: #111111;
+  color: #ffffff;
+}
+
+body.theme-base .preference-label {
+  color: #111111;
+}
+
+body.theme-base .preference-desc {
+  color: #888888;
+}
+
+body.theme-base .profile-preferences {
+  border-bottom-color: #cccccc;
+}
+
+/* ── Animated mode ── */
+@keyframes header-shine {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+body.theme-animated .hero h1,
+body.theme-animated .collections-heading,
+body.theme-animated .movie-detail-title,
+body.theme-animated .profile-heading {
+  background: linear-gradient(90deg, #c8a96e 44%, #fffdf5 50%, #c8a96e 56%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: header-shine 9s linear infinite;
+}
+
+@keyframes star-vibrate {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25%       { transform: rotate(-12deg) scale(1.1); }
+  75%       { transform: rotate(12deg) scale(1.1); }
+}
+
+body.theme-animated .watchlist-star.vibrating {
+  animation: star-vibrate 0.5s ease;
+}
+
+@keyframes btn-pop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.35); }
+  65%  { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+body.theme-animated .toggle-btn.popping {
+  animation: btn-pop 0.35s ease;
+}
+
+body.theme-base .btn {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+body.theme-base .btn:hover {
+  background-color: #333333;
+}
+
+body.theme-base .btn--secondary {
+  background-color: transparent;
+  color: #555555;
+  border-color: #aaaaaa;
+}
+
+body.theme-base .btn--secondary:hover {
+  background-color: #eeeeee;
+  color: #111111;
+}
+
+body.theme-base .btn--danger {
+  background-color: transparent;
+  color: #cc3333;
+  border-color: #cc3333;
+}
+
+body.theme-base .btn--danger:hover {
+  background-color: #fff0f0;
+  color: #aa2222;
 }

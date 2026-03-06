@@ -5,7 +5,7 @@ import MovieCard from '../components/MovieCard';
 const minYear = Math.min(...movies.map(m => m.year));
 const maxYear = Math.max(...movies.map(m => m.year));
 
-function Collections({ favorites, watched, toggleFavorite, toggleWatched }) {
+function Collections({ favorites, watched, watchlist, toggleFavorite, toggleWatched, toggleWatchlist }) {
   const [keyword, setKeyword] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
   const [yearFrom, setYearFrom] = useState(minYear);
@@ -120,8 +120,10 @@ function Collections({ favorites, watched, toggleFavorite, toggleWatched }) {
                 movie={movie}
                 isFavorite={favorites.includes(movie.id)}
                 isWatched={watched.includes(movie.id)}
+                isWatchlisted={watchlist.includes(movie.id)}
                 onToggleFavorite={toggleFavorite}
                 onToggleWatched={toggleWatched}
+                onToggleWatchlist={toggleWatchlist}
               />
             ))}
           </div>
