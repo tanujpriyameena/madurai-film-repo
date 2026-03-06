@@ -47,7 +47,7 @@ function Home() {
           </div>
           <div className="feature-card">
             <h3>Save Favorites</h3>
-            <p>Mark films you love and keep them on your profile for easy access anytime.</p>
+            <p>Mark films you love and keep them on your profile for easy access anytime. You can even have a watchlist by starring films you like!</p>
           </div>
           <div className="feature-card">
             <h3>Track Watched Films</h3>
