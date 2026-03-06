@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import movies from '../data/movies';
 import MovieCard from '../components/MovieCard';
+import { getMovieRatings } from '../services/firestore';
 
 const minYear = Math.min(...movies.map(m => m.year));
 const maxYear = Math.max(...movies.map(m => m.year));
@@ -11,9 +12,30 @@ function Collections({ favorites, watched, watchlist, toggleFavorite, toggleWatc
   const [yearFrom, setYearFrom] = useState(minYear);
   const [yearTo, setYearTo] = useState(maxYear);
   const [sortBy, setSortBy] = useState('');
-  const [ratings] = useState(() =>
-    JSON.parse(localStorage.getItem('ratings') || '{}')
-  );
+  const [avgRatings, setAvgRatings] = useState({});
+
+  useEffect(() => {
+    Promise.all(
+      movies.map(m =>
+        getMovieRatings(m.id).then(values => ({
+          id: m.id,
+          avg: values.length ? values.reduce((a, b) => a + b, 0) / values.length : 0,
+        }))
+      )
+    ).then(results => {
+      const map = {};
+      results.forEach(({ id, avg }) => { map[id] = avg; });
+      setAvgRatings(map);
+    });
+  }, []);
+
+  const clearFilters = () => {
+    setKeyword('');
+    setSelectedGenre('');
+    setYearFrom(minYear);
+    setYearTo(maxYear);
+    setSortBy('');
+  };
 
   // Pass 1: filter by keyword + year only, normalising inverted ranges
   const byKeywordAndYear = useMemo(() => {
@@ -49,13 +71,13 @@ function Collections({ favorites, watched, watchlist, toggleFavorite, toggleWatc
       selectedGenre === '' || m.genres.includes(selectedGenre)
     );
     if (sortBy === 'rating-desc') {
-      return [...results].sort((a, b) => (ratings[b.id] || 0) - (ratings[a.id] || 0));
+      return [...results].sort((a, b) => (avgRatings[b.id] || 0) - (avgRatings[a.id] || 0));
     }
     if (sortBy === 'rating-asc') {
-      return [...results].sort((a, b) => (ratings[a.id] || 0) - (ratings[b.id] || 0));
+      return [...results].sort((a, b) => (avgRatings[a.id] || 0) - (avgRatings[b.id] || 0));
     }
     return results;
-  }, [byKeywordAndYear, selectedGenre, sortBy, ratings]);
+  }, [byKeywordAndYear, selectedGenre, sortBy, avgRatings]);
 
   return (
     <main className="collections-page">
@@ -108,6 +130,7 @@ function Collections({ favorites, watched, watchlist, toggleFavorite, toggleWatc
             onChange={e => setYearTo(e.target.value)}
           />
         </div>
+        <button className="filter-clear" onClick={clearFilters}>Clear Filters</button>
       </div>
 
       {filtered.length === 0

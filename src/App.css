@@ -289,6 +289,22 @@ a {
   border-color: #c8a96e;
 }
 
+.filter-clear {
+  background-color: transparent;
+  border: 1px solid #555;
+  color: #a09080;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.filter-clear:hover {
+  border-color: #c8a96e;
+  color: #c8a96e;
+}
+
 .filter-year {
   display: flex;
   align-items: center;
