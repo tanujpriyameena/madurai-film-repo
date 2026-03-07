@@ -2,7 +2,7 @@
 
 ## Tech Stack
 - React 19 (Create React App)
-- React Router v6 for client-side routing
+- React Router v7 for client-side routing
 - Firebase Authentication (email/password)
 - Firebase Firestore for cloud data persistence
 - React Context API for auth state (`AuthContext`)

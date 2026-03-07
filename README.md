@@ -45,4 +45,17 @@ I am utilizing Claude Code on terminal to achieve these results. I am also using
 ## What I Learned
 The experience was incredibly tasking, but once more, I understood why planning was emphasized a lot prior to starting this project. The iterative process was the best, and the AI worked better when when it had a predetermiend list of items it had to follow. Furthermore, as previous modules showed, for edge cases, the AI needed to be informed of them manually if it had to make corrections (it did not trace everything)! Overall, the experience was time-consuming, yet informative, as I learnt a lot - environment variables, commits/amending, some code logic, and more.
 
-Note: refer to ARCHITECTURE.md to view all Architecture-related content in detail!
+## Architecture Overview
+
+**Frontend:** Built with React 19 as a single-page application. React Router v7 handles client-side navigation across six routes (Home, Collections, Movie detail, Profile, Login, Signup). Auth state is managed globally via React Context (`AuthContext`), while favorites, watched, and watchlist state live in the root `App.js` and are passed down as props. Styling is plain CSS with a cinematic dark theme and two user-selectable display modes.
+
+**Backend:** Firebase handles both authentication (email/password) and data persistence (Firestore). A `firestore.js` service layer contains all read/write functions. The app is deployed on Netlify, with Firebase credentials stored as environment variables.
+
+**Database:** Firestore stores three collections:
+- `users/{uid}` — favorites, watched, watchlist, bio, and display preferences per user
+- `movieRatings/{movieId}/ratings/{uid}` — individual star ratings (1–5)
+- `movieReviews/{movieId}/reviews/{uid}` — review text, display name, timestamp, and like/dislike votes
+
+Movie data itself is static, stored locally in `src/data/movies.js`.
+
+Note: refer to ARCHITECTURE.md to view all Architecture and Database-related content in detail!
