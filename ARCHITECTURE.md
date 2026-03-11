@@ -1,4 +1,5 @@
 # Madurai Film Library — Architecture
+Please note that this file is mainly just for reference. The architecture description was analyzed, and created by Claude Code. It provides a a much more detailed view into the tech stack, files, routing, database content, and more. The simplified version for the assignment is in README.md!
 
 ## Tech Stack
 - React 19 (Create React App)
