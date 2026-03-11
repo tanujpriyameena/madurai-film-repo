@@ -23,7 +23,7 @@ Additional features:
 I am utilizing Claude Code on terminal to achieve these results. I am also using React Router, so as to account for the different routes centered under the /pages folder. These are also handled by a _redirects file, which helps to display content when deploying to Netlify. As of recent (Week 8) updates, the following points detail all technologies used, better:
 - React 19 — This is a react app, built with React components, hooks, and state management.
 - React Router v7 — Handles navigation between pages like the following: Home, Collections, Movie detail (for each movie), Profile. This works without full page reloads.
-- Firebase v12 — This is our backend logic. We use it to store and retriev movie data, user interactions (ratings, reviews, favorites, watched status) through Firestore, and authentication (which we facilitate with email) if applicable.
+- Firebase v12 — This is our backend logic. We use it to store and retrieve movie data, user interactions (ratings, reviews, favorites, watched status) through Firestore, and authentication (which we facilitate with email) if applicable.
 - Create React App — The build command that handles and compiles the app for creation and development.
 - Netlify — This is the hosting service which hosts and deploys the live site from the GitHub main branch. A _redirects file is included, to handle client-side routing on Netlify properly.
 - Environment Variables — Sensitive credentials (Firebase config keys, API info, etc.) are stored in a .env file locally and added as environment variables in Netlify. This is for security purposes, and to avoid any misuse.
