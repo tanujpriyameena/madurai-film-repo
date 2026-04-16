@@ -2,7 +2,18 @@
 This is my README file, detailing the project, my plans (finished), and any associated technology.
 
 ## The Project Description
-"Madurai Film Library" is a Movie Tracker app, which will allow users to view a collection of popular or classic films, and interact with each film title. They will be able to favorite (like) films, mark movies they saw (or unmark, vice versa), provide star ratings, and even provide short descriptive reviews!
+"Madurai Film Library" is a movie tracker app, which allows you to view a collection of popular and classic films, and interact with each film title. Each film profile is organized into a card view - which is an image, plus some details about the movie. 
+
+You will be able to mark (like) your favorite to favorite films, highlight movies you've seen (or unmark, vice versa), provide star ratings (out of 5 stars), and even provide short descriptive reviews!
+
+If you are a user with an account on the site (if you are logged in), you will be able add a little biography, and adjust your site preferences - like the website's appearance. Furthermore, if you've interacted with the collections page, on your profile, you will be able to view your favorite films, films you've watched, and your watchlist! And yes, you can remove those films through your profile too!
+
+Here's a short guide for the difference between certain icons/tags, which you will see on each movie card:
+- Star icon: the star adds a movie to your watchlist, and you can activate it by clicking the star on the upper right corner of the card. To remove it from your watchlist, simply click that icon again!
+- Favorite tag: Each movie will provide you two tags, at the bottom of each movie card. The favorite tag will be at the bottom left, with a small heart icon. Tags function the same way, clicking on the tag deactivates it!
+- Watched tag: The watched tag is the one on the bottom right, with a small circle. However, when you click it (to activate), it turns into a checkmark.
+
+Please note: You will be able to view the site logged out as well, but with limited functionality. Site customization, reviews, and some other features will become limited.
 
 ## Existing Features (as of March 6, 2026)
 Core features:

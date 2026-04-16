@@ -219,6 +219,138 @@ const movies = [
       "In a nursing home, an elderly man reads to a woman with dementia from a weathered notebook — the story of a passionate summer romance between a poor mill worker and a wealthy young woman in 1940s South Carolina, and the decades of separation that followed. A sweeping love story about devotion, memory, and the enduring power of a love that refuses to fade.",
     posterUrl: "/images/the_notebook.jpg",
   },
+  {
+    id: 21,
+    title: "Mean Girls",
+    year: 2004,
+    genres: ["Comedy", "Drama"],
+    director: "Mark Waters",
+    cast: ["Lindsay Lohan", "Rachel McAdams", "Tina Fey", "Amanda Seyfried"],
+    description:
+      "Cady Heron, a teenager raised in the African bush, arrives at a suburban Illinois high school and is immediately thrown into the ruthless social hierarchy of the popular crowd known as the Plastics. As she infiltrates their inner circle, she loses sight of who she really is. A sharp, witty satire of teenage social dynamics that became a defining comedy of its era.",
+    posterUrl: "/images/mean_girls.jpg",
+  },
+  {
+    id: 22,
+    title: "Mulan",
+    year: 1998,
+    genres: ["Animation", "Action", "Adventure", "Family"],
+    director: "Tony Bancroft, Barry Cook",
+    cast: ["Ming-Na Wen", "Eddie Murphy", "BD Wong", "Miguel Ferrer"],
+    description:
+      "When her aging father is called to serve in the Imperial Army against a Hun invasion, a young woman disguises herself as a man and takes his place. With the help of a tiny red dragon named Mushu, Mulan must prove her worth on the battlefield and in her own heart. One of Disney's most beloved films, celebrated for its bravery, heart, and timeless message about honor.",
+    posterUrl: "/images/mulan.jpg",
+  },
+  {
+    id: 23,
+    title: "Happy Gilmore",
+    year: 1996,
+    genres: ["Comedy", "Sport"],
+    director: "Dennis Dugan",
+    cast: ["Adam Sandler", "Christopher McDonald", "Julie Bowen", "Bob Barker"],
+    description:
+      "A failed hockey player with a powerful slapshot and a short fuse discovers he has a natural talent for golf. To save his grandmother's house from the IRS, Happy Gilmore enters the PGA Tour and shakes up the stuffy golf world with his street hockey style and explosive temper. Adam Sandler at his most anarchic — a comedy classic for anyone who never quite fit the mold.",
+    posterUrl: "/images/happy_gilmore.jpg",
+  },
+  {
+    id: 24,
+    title: "Forrest Gump",
+    year: 1994,
+    genres: ["Drama", "Romance"],
+    director: "Robert Zemeckis",
+    cast: ["Tom Hanks", "Robin Wright", "Gary Sinise", "Sally Field"],
+    description:
+      "Sitting on a park bench, a slow-witted but kind-hearted man from Alabama recounts his extraordinary life — from growing up alongside Elvis Presley and playing college football to serving in Vietnam, meeting presidents, and running across the country. Through it all, Forrest never stops loving his childhood sweetheart Jenny. A sweeping, emotionally resonant portrait of American history as seen through innocent eyes.",
+    posterUrl: "/images/forrest_gump.jpg",
+  },
+  {
+    id: 25,
+    title: "Pretty Woman",
+    year: 1990,
+    genres: ["Romance", "Comedy"],
+    director: "Garry Marshall",
+    cast: ["Richard Gere", "Julia Roberts", "Jason Alexander", "Hector Elizondo"],
+    description:
+      "A wealthy businessman heading to Los Angeles for a week of high-stakes corporate deals hires a street-smart, free-spirited woman to be his companion. What begins as a simple arrangement turns into a transformative romance that challenges both of their worlds. Julia Roberts became a superstar overnight in one of Hollywood's most enduring Cinderella stories.",
+    posterUrl: "/images/pretty_woman.jpg",
+  },
+  {
+    id: 26,
+    title: "Men in Black",
+    year: 1997,
+    genres: ["Sci-Fi", "Action", "Comedy"],
+    director: "Barry Sonnenfeld",
+    cast: ["Will Smith", "Tommy Lee Jones", "Linda Fiorentino", "Vincent D'Onofrio"],
+    description:
+      "A wisecracking NYPD cop is recruited into a secret government agency that monitors and polices extraterrestrial life living undercover on Earth. Paired with a stoic veteran agent, the rookie must stop a giant alien bug from triggering an intergalactic war — all while keeping the universe's biggest secret. A perfect mix of action, humor, and sci-fi imagination.",
+    posterUrl: "/images/men_in_black.jpg",
+  },
+  {
+    id: 27,
+    title: "Home Alone",
+    year: 1990,
+    genres: ["Comedy", "Family"],
+    director: "Chris Columbus",
+    cast: ["Macaulay Culkin", "Joe Pesci", "Daniel Stern", "Catherine O'Hara"],
+    description:
+      "Eight-year-old Kevin McCallister is accidentally left behind when his family flies to Paris for Christmas vacation. Thrilled to have the house to himself, his joy turns to action when two bumbling burglars target his home. Kevin rigs the house with an outrageous series of traps and defends it with unforgettable ingenuity. A holiday classic that has made generations of kids wish they could be home alone.",
+    posterUrl: "/images/home_alone.jpg",
+  },
+  {
+    id: 28,
+    title: "Transformers",
+    year: 2007,
+    genres: ["Action", "Sci-Fi", "Adventure"],
+    director: "Michael Bay",
+    cast: ["Shia LaBeouf", "Megan Fox", "Josh Duhamel", "Tyrese Gibson"],
+    description:
+      "A teenager's new car turns out to be an alien robot in disguise — one of the Autobots, benevolent mechanical beings from the planet Cybertron who have come to Earth to find a powerful artifact before their enemies, the Decepticons, can use it to destroy humanity. Michael Bay's explosive blockbuster brought the beloved Hasbro toy line and cartoon to spectacular big-screen life.",
+    posterUrl: "/images/transformers.jpg",
+  },
+  {
+    id: 29,
+    title: "Mr. & Mrs. Smith",
+    year: 2005,
+    genres: ["Action", "Comedy", "Romance"],
+    director: "Doug Liman",
+    cast: ["Brad Pitt", "Angelina Jolie", "Vince Vaughn", "Adam Brody"],
+    description:
+      "A bored suburban couple stuck in a stale marriage are hiding a monumental secret from each other — they are both elite assassins working for competing agencies. When they are each assigned to kill the same target, they discover the truth and are immediately ordered to eliminate one another. A sleek, funny, and action-packed thriller that crackles with chemistry.",
+    posterUrl: "/images/mr_mrs_smith.jpg",
+  },
+  {
+    id: 30,
+    title: "The Devil Wears Prada",
+    year: 2006,
+    genres: ["Comedy", "Drama"],
+    director: "David Frankel",
+    cast: ["Meryl Streep", "Anne Hathaway", "Emily Blunt", "Stanley Tucci"],
+    description:
+      "An ambitious young journalist lands a job as assistant to Miranda Priestly, the impossibly demanding and imperious editor of the world's most prestigious fashion magazine. As she transforms herself to survive in the cutthroat world of high fashion, she must decide how much of herself she is willing to sacrifice for success. Meryl Streep delivers one of cinema's most iconic performances as the ice-cold Miranda.",
+    posterUrl: "/images/devil_wears_prada.jpg",
+  },
+  {
+    id: 31,
+    title: "Jodhaa Akbar",
+    year: 2008,
+    genres: ["History", "Romance", "Drama"],
+    director: "Ashutosh Gowariker",
+    cast: ["Hrithik Roshan", "Aishwarya Rai Bachchan", "Sonu Sood", "Kulbhushan Kharbanda"],
+    description:
+      "Set in 16th-century Mughal India, the film tells the story of a political marriage between the powerful Emperor Akbar and the Rajput princess Jodhaa Bai. What begins as a union of convenience slowly blossoms into a profound and enduring love. A grand epic of breathtaking scale, rich costumes, and stirring music that captures the splendor of one of India's greatest dynasties.",
+    posterUrl: "/images/jodhaa_akbar.jpg",
+  },
+  {
+    id: 32,
+    title: "Kuch Kuch Hota Hai",
+    year: 1998,
+    genres: ["Romance", "Drama", "Comedy"],
+    director: "Karan Johar",
+    cast: ["Shah Rukh Khan", "Kajol", "Rani Mukerji", "Salman Khan"],
+    description:
+      "In college, the carefree Rahul is best friends with the tomboyish Anjali but falls for the beautiful new student Tina, breaking Anjali's heart. Years later, Rahul's young daughter discovers her late mother's letters and sets out to reunite her father with his first true love. Karan Johar's directorial debut became a cultural phenomenon — a timeless Bollywood celebration of friendship, love, and second chances.",
+    posterUrl: "/images/kuch_kuch_hota_hai.jpg",
+  },
 ];
 
 export default movies;
