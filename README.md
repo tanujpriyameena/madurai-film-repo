@@ -2,11 +2,11 @@
 This is my README file, detailing the project, my plans (finished), and any associated technology.
 
 ## The Project Description
-"Madurai Film Library" is a movie tracker app, which allows you to view a collection of popular and classic films, and interact with each film title. Each film profile is organized into a card view - which is an image, plus some details about the movie. 
+"Madurai Film Library" is a movie tracker app that allows you to view a collection of popular and classic films and interact with each film title. Each film profile is organized into a card view - which is an image, plus some details about the movie.
 
-You will be able to mark (like) your favorite to favorite films, highlight movies you've seen (or unmark, vice versa), provide star ratings (out of 5 stars), and even provide short descriptive reviews!
+You will be able to mark (like) your favorite films, highlight movies you've seen (or unmark, vice versa), provide star ratings (out of 5 stars), and even provide short descriptive reviews!
 
-If you are a user with an account on the site (if you are logged in), you will be able add a little biography, and adjust your site preferences - like the website's appearance. Furthermore, if you've interacted with the collections page, on your profile, you will be able to view your favorite films, films you've watched, and your watchlist! And yes, you can remove those films through your profile too!
+If you are a user with an account on the site (if you are logged in), you will be able to add a little biography and adjust your site preferences - like the website's appearance. Furthermore, if you've interacted with the collections page on your profile, you will be able to view your favorite films, films you've watched, and your watchlist! And yes, you can remove those films through your profile too!
 
 Here's a short guide for the difference between certain icons/tags, which you will see on each movie card:
 - Star icon: the star adds a movie to your watchlist, and you can activate it by clicking the star on the upper right corner of the card. To remove it from your watchlist, simply click that icon again!
